@@ -356,10 +356,7 @@ async function findSubscriber(input) {
   return results;
 }
 
-
-  findSubscriber('balwill@Bu.edu').then(console.log)
-
-
+// findSubscriber('balwill@Bu.edu').then(console.log)
 
 module.exports = {
   findSubscriber
