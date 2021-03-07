@@ -1,8 +1,8 @@
 import React from 'react';
-import { IconSettings, Input, Button } from '@salesforce/design-system-react';
+import { Input, Button } from '@salesforce/design-system-react';
 import FormResult from './FormResult';
 import { connect } from 'react-redux'
-import { findSubscriber, handleInput, handleSubmit } from '../actions'
+import { findSubscriber, handleInput } from '../actions'
 
 
 // Maps the Store's State (aka the global state) to this Component's props
@@ -10,8 +10,8 @@ const mapStateToProps = state => {
   return {
     input: state.input,
     inputSubmitted: state.inputSubmitted,
-    resultLoading: false,
-    resultRetrieved: false,
+    resultLoading: state.resultLoading,
+    resultRetrieved: state.resultRetrieved,
   }
 }
 
@@ -45,6 +45,8 @@ class Form extends React.Component {
             styleContainer={{ marginBottom: '10px' }}
             Value={this.props.input}
             onChange={(e) => this.props.dispatch(handleInput(e))}
+            type="email"
+            required={true}
           />
 
           <Button
@@ -55,7 +57,7 @@ class Form extends React.Component {
           />
         </div>
 
-        {(this.props.inputSubmitted) ? <FormResult /> : null }
+        {this.props.inputSubmitted && (this.props.resultLoading || this.props.resultRetrieved) ? <FormResult /> : null }
 
       </React.Fragment>
     );

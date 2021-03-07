@@ -1,34 +1,6 @@
 import axios from 'axios'
 import actionType from './actionTypes'
 
-// KEEPING AS A MODEL - DELETE LATER
-// export const fetchAuthCode = () => {
-//   return async (dispatch, getState) => {
-//     // Tell the app we're fetching auth code
-//     dispatch({
-//       type: 'FETCH_AUTHORIZATION_CODE_REQUEST'
-//     })
-
-//     // Try and fetch the Authorization Code
-//     try {  
-//       let response = await axios.get('/api/authcode')
-//       // Tell the App we've successfully retrieve auth code
-//       dispatch({
-//         type: 'FETCH_AUTHORIZATION_CODE_SUCCESS',
-//         payload: {
-//           authCodeLogin: response.data  
-//         }
-//       })
-//     } 
-//     // Tell the App auth code retrieval failed 
-//     catch (error) {
-//       dispatch({
-//         type: 'FETCH_AUTHORIZATION_CODE_ERROR'
-//       })
-//     }
-//   }
-// }
-
 export function handleInput(e) {
   return {
     type: actionType.INPUT_CHANGE,
@@ -75,15 +47,3 @@ export const findSubscriber = () => {
     }
   }
 }
-
-// export function handleSubmit() {
-//   return (dispatch, getState) => {
-//     dispatch({
-//       type: actionType.FORM_SUBMIT,
-//       payload: {
-//         resultLoading: true,
-//         inputSubmitted: getState().input
-//       }
-//     })
-//   }
-// }

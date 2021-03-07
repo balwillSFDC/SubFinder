@@ -3,7 +3,6 @@ import React from 'react'
 import AppHeader from './AppHeader';
 import Form from './Form';
 import About from './About';
-import FormResult from './FormResult'
 import { BrowserRouter, Route } from 'react-router-dom';
 import { BrandBand } from '@salesforce/design-system-react';
 

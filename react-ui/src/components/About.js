@@ -1,4 +1,3 @@
-import { Accordion, AccordionPanel } from '@salesforce/design-system-react';
 import React, { Component } from 'react';
 
 export default class About extends Component {

@@ -6,7 +6,7 @@ const initialState = {
   resultLoading: false,
   resultRetrieved: false,
   results: null,
-  error: ''
+  error: '',
 }
 
 const customMiddleWare = store => next => action => {
