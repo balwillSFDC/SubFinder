@@ -6,7 +6,14 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { customMiddleWare, reducer } from './reducer'
 
-const middlewareEnhancer = composeWithDevTools(applyMiddleware(logger, customMiddleWare, thunk))
+let middlewareEnhancer;
+
+if (process.env.NODE_ENV !== 'production') {
+  middlewareEnhancer = composeWithDevTools(applyMiddleware(logger, customMiddleWare, thunk))
+} else {
+  middlewareEnhancer = composeWithDevTools(applyMiddleware(customMiddleWare, thunk))
+}
+
 
 let persistConfig = {
   key: 'root',

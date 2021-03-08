@@ -1,8 +1,8 @@
 import React from 'react';
 import { Input, Button } from '@salesforce/design-system-react';
-import FormResult from './FormResult';
+import FormResult from '../FormResult/FormResult';
 import { connect } from 'react-redux'
-import { findSubscriber, handleInput } from '../actions'
+import { findSubscriber, handleInput } from '../../actions'
 
 
 // Maps the Store's State (aka the global state) to this Component's props
@@ -27,6 +27,8 @@ class Form extends React.Component {
   }
 
   render() {
+    // Used to disable the 'Submit' button unless input is an email address
+    let isEmail = this.props.input.includes('@') ? true : false 
 
     return (
       <React.Fragment>
@@ -54,6 +56,7 @@ class Form extends React.Component {
             label="Submit"
             variant="brand"
             onClick={() => this.props.dispatch(findSubscriber())}
+            disabled={!isEmail}
           />
         </div>
 

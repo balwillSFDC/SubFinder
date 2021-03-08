@@ -17,7 +17,8 @@ export const findSubscriber = () => {
       payload: {
         resultLoading: true,
         resultRetrieved: false,
-        inputSubmitted: getState().input
+        inputSubmitted: getState().input,
+        error: {}
       }
     })
 

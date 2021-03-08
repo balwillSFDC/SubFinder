@@ -6,7 +6,7 @@ const initialState = {
   resultLoading: false,
   resultRetrieved: false,
   results: null,
-  error: '',
+  error: {},
 }
 
 const customMiddleWare = store => next => action => {
@@ -30,7 +30,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         resultLoading: action.payload.resultLoading,
         resultRetrieved: action.payload.resultRetrieved,
-        inputSubmitted: action.payload.inputSubmitted
+        inputSubmitted: action.payload.inputSubmitted,
+        error: action.payload.error
       }
     case actionType.FIND_SUBSCRIBER_SUCCESS: 
       return {

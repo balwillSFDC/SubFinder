@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import React from 'react'
-import AppHeader from './AppHeader';
-import Form from './Form';
-import About from './About';
+import AppHeader from '../AppHeader/AppHeader';
+import Form from '../Form/Form';
+import About from '../About/About';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { BrandBand } from '@salesforce/design-system-react';
 
@@ -19,10 +19,6 @@ const mapDispatchToProps = dispatch => {
 class App extends React.Component {
   constructor() {
     super()
-  }
-
-  componentDidMount() {
-    
   }
 
   render() {

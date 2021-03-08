@@ -1,9 +1,9 @@
 import React from 'react';
-import DataExtensionTables from './DataExtensionTables';
-import Loader from './Loader'
+import DataExtensionTables from '../DataExtensionTables/DataExtensionTables';
+import Loader from '../Loader/Loader'
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import SubscriberInfoResults from './SubscriberInfoResults'
+import SubscriberInfoResults from '../SubscriberInfoResults/SubscriberInfoResults'
 
 
 // Maps the Store's State (aka the global state) to this Component's props
