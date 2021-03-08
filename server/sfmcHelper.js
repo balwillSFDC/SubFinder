@@ -102,8 +102,8 @@ const sfmcNode = new ET_Client(clientId, clientSecret, stack, {
 
   }
   
-// // CODE THAT HELPS YOU SEE WHAT PROPERTIES ARE RETRIEVABLE IN API OBJECT
-// sfmcSoap.describe('BusinessUnit', (err, response) => {
+// CODE THAT HELPS YOU SEE WHAT PROPERTIES ARE RETRIEVABLE IN API OBJECT
+// sfmcNode.SoapClient.describe('Subscriber', (err, response) => {
 //     let properties = response.body.ObjectDefinition.Properties
 //     let propertyArray = [];
 //     properties.forEach(property => {
@@ -322,6 +322,38 @@ async function getFolderPath(categoryId) {
   return folderPath;
 }
 
+function getSubscriberInfo(emailOrContactKey) {
+  let inputType = emailOrContactKey.includes('@') ? 'Email' : 'Text';
+
+  let options = {
+    props: [
+      'ID',
+      'CreatedDate',
+      'Client.ID',
+      'EmailAddress',
+      'SubscriberKey',
+      'UnsubscribedDate',
+      'Status',
+    ],
+    filter: {
+      leftOperand: inputType === 'Email' ? 'EmailAddress' : 'SubscriberKey',
+      operator: 'equals',
+      rightOperand: emailOrContactKey
+    }
+  }
+  
+  let subscriberInfo = sfmcNode.subscriber(options)
+
+  const subscriberInfoResult = new Promise((resolve, reject) => {
+    subscriberInfo.get((err, res) => {
+      if (err) reject(err) 
+      if (res) resolve(res.body.Results)
+    })
+  })
+  
+  return subscriberInfoResult
+}
+
 async function findSubscriber(input) {
   // 1. If input contains '@' assume inputType = Email, otherwise assume input is a SubscriberKey (i.e. inputType = Text)
   // 2. If inputType = Email, for each data extension, search if there's a column name where fieldType = 'Email'
@@ -330,8 +362,15 @@ async function findSubscriber(input) {
 
   let inputType = input.includes('@') ? 'Email' : 'Text';
   let allDataExtensions = await getAllDataExtensions();
+  let subscriberInfo = await getSubscriberInfo(input)
 
-  let results = [];
+  let dataExtensionResults = [];
+
+
+  let results = {
+    subscriberInfo,
+    dataExtensionResults
+  }
 
   if (inputType === 'Email') {
     for (const dataExtension of allDataExtensions) {
@@ -347,7 +386,7 @@ async function findSubscriber(input) {
           if (matchingRows.length > 0) {
             let folderPath = await getFolderPath(dataExtension.CategoryID)
 
-            results.push({ dataExtension, column, matchingRows, folderPath });
+            dataExtensionResults.push({ dataExtension, column, matchingRows, folderPath });
           }             
         }
       }
@@ -356,7 +395,8 @@ async function findSubscriber(input) {
   return results;
 }
 
-// findSubscriber('balwill@Bu.edu').then(console.log)
+findSubscriber('balwill@Bu.edu').then(console.log)
+
 
 module.exports = {
   findSubscriber
