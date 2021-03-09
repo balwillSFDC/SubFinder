@@ -9,9 +9,12 @@ const env                 = require('dotenv').config()
 const bodyParser          = require('body-parser')
 const { findSubscriber }          = require('./sfmcHelper')
 const throng = require('throng')
-const WORKERS = process.env.WEB_CONCURRENCY || 1
+const redis = require('redis')
+const WORKERS = process.env.WEB_CONCURRENCY || 2
 const isDev = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 5000
+let REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
+let Queue = require('bull')
 
 function start() {
   const app = express();
@@ -26,7 +29,7 @@ function start() {
   // ROUTES
   // =======================================================
  
-  app.post('/api/findSubscriber', (req, res) => {
+  app.post('/api/findSubscriber', async (req, res) => {
     findSubscriber(req.body.inputSubmitted)
       .then(result => res.json(result))
   })
