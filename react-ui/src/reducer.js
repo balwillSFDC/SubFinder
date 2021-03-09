@@ -1,21 +1,12 @@
-import actionType from './actionTypes'
+import actionType from './actionTypes';
+import initialState from './initialState';
 
-const initialState = {
-  input: '',
-  inputSubmitted: '',
-  resultLoading: false,
-  resultRetrieved: false,
-  results: null,
-  error: {},
-}
-
-const customMiddleWare = store => next => action => {
+const customMiddleWare = (store) => (next) => (action) => {
   // Custom Middleware
   // ...
 
-
-  return next(action)
-}
+  return next(action);
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,7 +14,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         input: action.payload.input
-      }
+      };
 
     case actionType.FIND_SUBSCRIBER_REQUEST:
       return {
@@ -32,25 +23,24 @@ const reducer = (state = initialState, action) => {
         resultRetrieved: action.payload.resultRetrieved,
         inputSubmitted: action.payload.inputSubmitted,
         error: action.payload.error
-      }
-    case actionType.FIND_SUBSCRIBER_SUCCESS: 
+      };
+    case actionType.FIND_SUBSCRIBER_SUCCESS:
       return {
         ...state,
         resultLoading: action.payload.resultLoading,
         resultRetrieved: action.payload.resultRetrieved,
         results: action.payload.results
-      }
+      };
     case actionType.FIND_SUBSCRIBER_FAILURE:
       return {
         ...state,
         resultLoading: action.payload.resultLoading,
         resultRetrieved: action.payload.resultRetrieved,
         error: action.payload.error
-      }
+      };
     default:
       return state;
   }
-
 };
 
-export {customMiddleWare, reducer}
+export { customMiddleWare, reducer };
