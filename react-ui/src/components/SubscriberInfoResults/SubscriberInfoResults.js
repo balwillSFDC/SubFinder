@@ -4,7 +4,8 @@ import {
   Card,
   Icon,
   DataTable,
-  DataTableColumn, } from '@salesforce/design-system-react'
+  DataTableColumn,
+  IconSettings } from '@salesforce/design-system-react'
 
 const mapStateToProps = state => {
   return {
@@ -79,17 +80,20 @@ class SubscriberInfoResults extends Component {
 
     if (subscriberInfoResults.length > 0) {
       displayResult = (
-        <Card 
-          key={`subCard`}
-          heading='All Subscribers Info'
-          icon={<Icon category="standard" name="contact" size="small"/>}
-        >
+        <IconSettings iconPath='/icons/' >
+          <Card 
+            key={`subCard`}
+            heading='All Subscribers Info'
+            icon={<Icon category="utility" name="people" size="small"/>}
+          >
 
-          <DataTable items={subscriberInfoResults}>
-            {columns}
-          </DataTable>
+            <DataTable items={subscriberInfoResults}>
+              {columns}
+            </DataTable>
             
-        </Card>
+          </Card>
+        </IconSettings>
+        
       )
     } else {
       displayResult = null

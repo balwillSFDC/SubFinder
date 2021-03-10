@@ -4,6 +4,7 @@ import {
   Icon,
   DataTable,
   DataTableColumn,
+  IconSettings,
 } from '@salesforce/design-system-react';
 import { connect } from 'react-redux'
 
@@ -76,11 +77,11 @@ class DataExtensionTables extends Component {
           })
           
           return (       
-            <>
+            <IconSettings iconPath='/icons/' key={`iconSettings-${result.dataExtension.ObjectID}`}>
               <Card 
                 key={`card-${result.dataExtension.ObjectID}`}
                 heading={result.dataExtension.Name}
-                icon={<Icon category="standard" name="dataset" size="small"/>}
+                icon={<Icon category="utility" name="database" size="small" />}
               >
                 <div className={'slds-text-color_weak'} style={{padding: "0px 16px 12px"}}>
                   {result.folderPath}
@@ -92,7 +93,7 @@ class DataExtensionTables extends Component {
                   {columns}
                 </DataTable>
               </Card>
-            </>
+            </IconSettings>
           )
         }) }
 
