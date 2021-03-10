@@ -9,7 +9,8 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    results: state.results
+    findSubscriberJobs: state.findSubscriberJobs,
+    currentJobId: state.currentJobId
   }
 }
 
@@ -24,16 +25,18 @@ class DataExtensionTables extends Component {
   }
 
   render() {
-    let dataExtensionResults = this.props.results.dataExtensionResults
+    let currentJob = this.props.findSubscriberJobs.find( job => job.id == this.props.currentJobId)
+    let dataExtensionResults = currentJob.result.dataExtensionResults
+
     let dataExtensionResultMessage;
 
-    if (dataExtensionResults.length > 1) {
+    if (dataExtensionResults.length > 0) {
       dataExtensionResultMessage = (
         <div 
           className={'slds-text-heading_medium slds-text-color_success'} 
           style={{marginBottom: '1em'}}
         >
-          Your Subscriber was found in {this.props.results.dataExtensionResults.length} Data Extensions
+          Your Subscriber was found in {dataExtensionResults.length} Data Extensions
         </div>
       )
     } else if (dataExtensionResults.length === 1) {
@@ -42,7 +45,7 @@ class DataExtensionTables extends Component {
           className={'slds-text-heading_medium slds-text-color_success'} 
           style={{marginBottom: '1em'}}
         >
-          Your Subscriber was found in {this.props.results.dataExtensionResults.length} Data Extension
+          Your Subscriber was found in {dataExtensionResults.length} Data Extension
         </div>
       )
     } else {

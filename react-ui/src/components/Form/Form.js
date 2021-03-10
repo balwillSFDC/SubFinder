@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Button } from '@salesforce/design-system-react';
 import FormResult from '../FormResult/FormResult';
 import { connect } from 'react-redux'
-import { findSubscriber, handleInput } from '../../actions'
+import { addFindSubscriberJob, handleInput } from '../../stateManagement/actions'
 
 
 // Maps the Store's State (aka the global state) to this Component's props
@@ -55,7 +55,7 @@ class Form extends React.Component {
             id="Submit"
             label="Submit"
             variant="brand"
-            onClick={() => this.props.dispatch(findSubscriber())}
+            onClick={() => this.props.dispatch(addFindSubscriberJob())}
             disabled={!isEmail}
           />
         </div>

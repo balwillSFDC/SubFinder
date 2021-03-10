@@ -8,7 +8,8 @@ import {
 
 const mapStateToProps = state => {
   return {
-    results: state.results
+    findSubscriberJobs: state.findSubscriberJobs,
+    currentJobId: state.currentJobId
   } 
 }
 
@@ -23,7 +24,8 @@ class SubscriberInfoResults extends Component {
   }
   
   render() {
-    let subscriberInfoResults = this.props.results.subscriberInfo
+    let currentJob = this.props.findSubscriberJobs.find( job => job.id == this.props.currentJobId)
+    let subscriberInfoResults = currentJob.result.subscriberInfo
     let displayMessage;
     let displayResult;
 
