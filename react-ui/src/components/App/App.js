@@ -1,3 +1,4 @@
+import './App.css'
 import { connect } from 'react-redux'
 import React from 'react'
 import AppHeader from '../AppHeader/AppHeader';
@@ -25,8 +26,9 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <BrandBand id="brand-band-lightning-blue" theme="lightning-blue">
-          <div style={{ margin: '2em 5em 0 5em' }}>
+          <div className={'App'}>
             <AppHeader />
+            
             <Route exact path="/">
               <Form />
             </Route>

@@ -1,3 +1,4 @@
+import './SubscriberInfoResults.css'
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { 
@@ -102,7 +103,7 @@ class SubscriberInfoResults extends Component {
   
     return (
       <div>
-        <div style={{marginBottom: '1em'}}>
+        <div id='display-message' >
           {displayMessage}
         </div>
         {displayResult}

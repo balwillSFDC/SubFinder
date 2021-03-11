@@ -1,3 +1,4 @@
+import './FormResult.css'
 import React from 'react';
 import DataExtensionTables from '../DataExtensionTables/DataExtensionTables';
 import Loader from '../Loader/Loader'
@@ -53,8 +54,8 @@ class FormResult extends React.Component {
       displayResults = (
         <>
           <div
+            id='loading-message'
             className="slds-text-heading_medium"
-            style={{ paddingBottom: '10px' }}
           >
             Finding Subscriber...
           </div>
@@ -74,8 +75,8 @@ class FormResult extends React.Component {
 
     return (
       <div
+        id='form-result'
         className="slds-box slds-theme_default"
-        style={{ marginBottom: '10px'}}
       >
         {displayResults}
       </div>

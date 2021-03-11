@@ -1,3 +1,4 @@
+import './DataExtensionTables.css'
 import React, { Component } from 'react';
 import {
   Card,
@@ -34,8 +35,8 @@ class DataExtensionTables extends Component {
     if (dataExtensionResults.length > 0) {
       dataExtensionResultMessage = (
         <div 
+          id={'data-extension-result-message'}
           className={'slds-text-heading_medium slds-text-color_success'} 
-          style={{marginBottom: '1em'}}
         >
           Your Subscriber was found in {dataExtensionResults.length} Data Extensions
         </div>
@@ -43,23 +44,23 @@ class DataExtensionTables extends Component {
     } else if (dataExtensionResults.length === 1) {
       dataExtensionResultMessage = (
         <div 
+          id={'data-extension-result-message'}
           className={'slds-text-heading_medium slds-text-color_success'} 
-          style={{marginBottom: '1em'}}
         >
           Your Subscriber was found in {dataExtensionResults.length} Data Extension
         </div>
       )
     } else {
       <div 
+        id={'data-extension-result-message'}
         className={'slds-text-heading_medium slds-text-color_error'} 
-        style={{marginBottom: '1em'}}
       > 
         Your Subscriber was not found in any Data Extensions. 
       </div>
     }
 
     return (
-      <div style={{marginTop: '3em'}}>
+      <div id={'data-extension-results-section'}>
        
         {dataExtensionResultMessage}
 
@@ -83,7 +84,7 @@ class DataExtensionTables extends Component {
                 heading={result.dataExtension.Name}
                 icon={<Icon category="utility" name="database" size="small" />}
               >
-                <div className={'slds-text-color_weak'} style={{padding: "0px 16px 12px"}}>
+                <div id={'folder-path'} className={'slds-text-color_weak'} >
                   {result.folderPath}
                 </div>
                 <DataTable 

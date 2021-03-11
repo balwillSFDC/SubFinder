@@ -1,3 +1,4 @@
+import './Loader.css'
 import React, { Component } from 'react'
 import { Spinner } from '@salesforce/design-system-react'
 import { connect } from 'react-redux'
@@ -13,8 +14,8 @@ class Loader extends Component {
     render() {
         return (
           <>
-            <p style={{textAlign: 'center', marginBottom: '.25em'}}>Hold tight! We are finding <strong>{this.props.inputSubmitted}</strong> for you</p>
-            <div style={{ position: 'relative', height: '5rem' }}>
+            <p id='spinner-message' >Hold tight! We are finding <strong>{this.props.inputSubmitted}</strong> for you</p>
+            <div id='spinner' >
               <Spinner
                 size="medium"
                 variant="brand"

@@ -1,0 +1,9 @@
+#spinner-message {
+  text-align: center;
+  margin-bottom: .25em;
+}
+
+#spinner {
+  position: relative;
+  height: 5rem;
+}
