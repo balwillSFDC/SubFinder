@@ -35,7 +35,7 @@ class FormResult extends React.Component {
   componentDidMount() {
       setInterval(() => {
         let incompleteJobs = this.props.findSubscriberJobs.filter(job => {
-          return job.state != 'completed'
+          return job.state === 'active'
         })
 
         if (incompleteJobs.length > 0) {
@@ -62,6 +62,20 @@ class FormResult extends React.Component {
           <Loader />
         </>
       )
+    } else if ( currentJob.state === 'failed' && currentJob.reason ) {
+      displayResults = (
+        <>
+          <div className='slds-text-color_error slds-text-heading_medium slds-text-align_center'> 
+            Hmmm...Looks like this job failed. The following was the reason provided: 
+          </div>
+          <div 
+            id='error-reason'
+            className='slds-text-color_error slds-text-align_center'
+          >
+            <i>&quot;{currentJob.reason}&quot;</i> 
+          </div>
+        </>
+      )
     } else if ( this.props.resultRetrieved && (currentJob.result.subscriberInfo.length > 0 || currentJob.result.dataExtensionResults.length > 0) ) {
       displayResults = (
         <>
@@ -69,9 +83,13 @@ class FormResult extends React.Component {
           <DataExtensionTables />  
         </>
       )
-    } else if (this.props.resultRetrieved && this.props.results.subscriberInfo.length === 0 && this.props.results.dataExtensionResults.length === 0) {
-      displayResults = <div className={'slds-text-heading_medium slds-text-align_center'}>Whoops! Looks like that subscriber does not exist</div> 
-    }
+    } else if (this.props.resultRetrieved && currentJob.result.subscriberInfo.length === 0 && currentJob.result.dataExtensionResults.length === 0) {
+      displayResults = (
+        <div className={'slds-text-heading_medium slds-text-align_center'}>
+          Whoops! Looks like a Subscriber with the email, <strong>{currentJob.inputSubmitted}</strong>, does not exist
+        </div>
+      )
+    } 
 
     return (
       <div

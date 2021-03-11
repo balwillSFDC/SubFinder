@@ -17,7 +17,7 @@ function start() {
 
     switch(job.data.jobType) {
       case 'FIND_SUBSCRIBER':
-        let findSubscriberResult = await findSubscriber(job.data.inputSubmitted)
+        let findSubscriberResult = await findSubscriber(job.data.inputSubmittedIncorrectSpelling)
         return findSubscriberResult
     }
   })

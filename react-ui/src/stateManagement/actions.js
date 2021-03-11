@@ -13,7 +13,7 @@ export function handleInput(e) {
 export const addFindSubscriberJob = () => {
   return async (dispatch, getState) => {
     dispatch({
-      type: actionType.FIND_SUBSCRIBER_REQUEST,
+      type: actionType.ADD_FIND_SUBSCRIBER_JOB_REQUEST,
       payload: {
         resultLoading: true,
         resultRetrieved: false,
@@ -29,7 +29,7 @@ export const addFindSubscriberJob = () => {
       })
 
       dispatch({
-        type: actionType.FIND_SUBSCRIBER_SUCCESS,
+        type: actionType.ADD_FIND_SUBSCRIBER_JOB_SUCCESS,
         payload: {
           currentJobId: response.data.id,
           job: {...response.data},
@@ -38,7 +38,7 @@ export const addFindSubscriberJob = () => {
     } catch(e) {
       
       dispatch({
-        type: actionType.FIND_SUBSCRIBER_FAILURE,
+        type: actionType.ADD_FIND_SUBSCRIBER_JOB_FAILURE,
         payload: {
           resultLoading: false,
           resultRetrieved: false,
@@ -62,7 +62,8 @@ export const updateFindSubscriberJobs = (incompleteJobs) => {
 
 
         if (retrievedJobState != incompleteJob.state ) {
-          if (currentJobId === incompleteJob.id) {
+
+          if (currentJobId === incompleteJob.id && retrievedJobState === 'completed') {
             dispatch({
               type: actionType.UPDATE_FIND_SUBSCRIBER_CURRENT_JOB_SUCCESS,
               payload: {
@@ -71,14 +72,32 @@ export const updateFindSubscriberJobs = (incompleteJobs) => {
                 resultRetrieved: true,
               }
             })
-          } else {
+          } else if (currentJobId === incompleteJob.id && retrievedJobState === 'failed') {
+            dispatch({
+              type: actionType.UPDATE_FIND_SUBSCRIBER_CURRENT_JOB_FAILURE,
+              payload: {
+                job: response.data,
+                resultLoading: false,
+                resultRetrieved: true,
+              }
+            })
+
+          } else if (currentJobId != incompleteJob.id && retrievedJobState != 'failed') {
             dispatch({
               type: actionType.UPDATE_FIND_SUBSCRIBER_OTHER_JOB_SUCCESS,
               payload: {
                 job: response.data
               }
             })
+          } else if (currentJobId != incompleteJob.id && retrievedJobState === 'failed') {
+            dispatch({
+              type:actionType.UPDATE_FIND_SUBSCRIBER_OTHER_JOB_FAILURE,
+              payload: {
+                job: response.data
+              }
+            })
           }
+
         }
         
       } catch(error) {
@@ -90,4 +109,3 @@ export const updateFindSubscriberJobs = (incompleteJobs) => {
     })
   }
 }
-

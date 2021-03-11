@@ -4,7 +4,6 @@ const initialState = {
   currentJobId: '',
   resultLoading: false,
   resultRetrieved: false,
-  results: null,
   error: {},
   findSubscriberJobs: []
 };

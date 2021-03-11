@@ -6,10 +6,11 @@ import Form from '../Form/Form';
 import About from '../About/About';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { BrandBand } from '@salesforce/design-system-react';
+import ErrorAlert from '../ErrorAlert/ErrorAlert';
 
 const mapStateToProps = state => {
   return {
-
+    error: state.error
   }
 }
 
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => {
 class App extends React.Component {
   constructor() {
     super()
+    
   }
 
   render() {
@@ -27,8 +29,10 @@ class App extends React.Component {
       <BrowserRouter>
         <BrandBand id="brand-band-lightning-blue" theme="lightning-blue">
           <div className={'App'}>
+            {/* If the error prop is populated, then display the ErrorAlert component  */}
+            { this.props.error && Object.keys(this.props.error).length === 0  ? null : <ErrorAlert /> } 
             <AppHeader />
-            
+
             <Route exact path="/">
               <Form />
             </Route>

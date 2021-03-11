@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
         input: action.payload.input
       };
 
-    case actionType.FIND_SUBSCRIBER_REQUEST:
+    case actionType.ADD_FIND_SUBSCRIBER_JOB_REQUEST:
       return {
         ...state,
         resultLoading: action.payload.resultLoading,
@@ -44,13 +44,13 @@ const reducer = (state = initialState, action) => {
         inputSubmitted: action.payload.inputSubmitted,
         error: action.payload.error
       };
-    case actionType.FIND_SUBSCRIBER_SUCCESS:
+    case actionType.ADD_FIND_SUBSCRIBER_JOB_SUCCESS:
       return {
         ...state,
         currentJobId: action.payload.currentJobId,
         findSubscriberJobs: [...state.findSubscriberJobs, action.payload.job]
       };
-    case actionType.FIND_SUBSCRIBER_FAILURE:
+    case actionType.ADD_FIND_SUBSCRIBER_JOB_FAILURE:
       return {
         ...state,
         resultLoading: action.payload.resultLoading,
@@ -58,6 +58,13 @@ const reducer = (state = initialState, action) => {
         error: action.payload.error
       };
     case actionType.UPDATE_FIND_SUBSCRIBER_CURRENT_JOB_SUCCESS:
+      return {
+        ...state,
+        findSubscriberJobs: updateObjectInArray(state.findSubscriberJobs, action),
+        resultLoading: action.payload.resultLoading,
+        resultRetrieved: action.payload.resultRetrieved
+      }
+    case actionType.UPDATE_FIND_SUBSCRIBER_CURRENT_JOB_FAILURE:
       return {
         ...state,
         findSubscriberJobs: updateObjectInArray(state.findSubscriberJobs, action),
@@ -72,9 +79,14 @@ const reducer = (state = initialState, action) => {
     case actionType.UPDATE_FIND_SUBSCRIBER_JOB_FAILURE:
       return {
         ...state,
+        findSubscriberJobs: updateObjectInArray(state.findSubscriberJobs, action),
         error: action.payload.error
       }
-    
+    case actionType.CLEAR_GENERAL_ERROR_MESSAGE: 
+      return {
+        ...state,
+        error: {}
+      }
     default:
       return state;
   }
