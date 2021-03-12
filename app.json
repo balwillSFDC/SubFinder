@@ -1,0 +1,40 @@
+{
+  "name": "SubFinder",
+  "description": "Find your subscribers!",
+  "repository": "https://github.com/balwillSFDC/SubFinder",
+  "keywords": ["Salesforce", "Marketing Cloud", "SFMC"],
+  "addons": [
+    "heroku-redis"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "REACT_APP_SFMC_CLIENTID": {
+      "description": "The Client Id of your installed package within SFMC",
+      "required": true
+    },
+    "REACT_APP_SFMC_CLIENTSECRET": {
+      "description": "The Client Secret of your installed package within SFMC",
+      "required": true
+    },
+    "REACT_APP_SFMC_STACK": {
+      "description": "The stack your instance is on (i.e. 's4', 's7', etc.)",
+      "required": false
+    },
+    "REACT_APP_SFMC_ORIGIN": {
+      "description": "The REST Base URI of your installed package within SFMC",
+      "required": true
+    },
+    "REACT_APP_SFMC_AUTHORIGIN": {
+      "description": "The Authentication Base URI of your installed package within SFMC",
+      "required": true
+    },
+    "REACT_APP_SFMC_SOAPORIGIN": {
+      "description": "The SOAP Base URI of your installed package within SFMC",
+      "required": true
+    }
+  }
+}
