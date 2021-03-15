@@ -35,16 +35,6 @@
     "REACT_APP_SFMC_SOAPORIGIN": {
       "description": "The SOAP Base URI of your installed package within SFMC",
       "required": true
-    },
-    "INLINE_RUNTIME_CHUNK": {
-      "description": " WARNING: DO NOT CHANGE - Disables the webpack runtime logic that React includes in the index.html file. This is done to prevent issues with Content Security Policy",
-      "required": true,
-      "value": "false"
-    }, 
-    "IMAGE_INLINE_SIZE_LIMIT": {
-      "description": "WARNING: DO NOT CHANGE - Prevents React from inlining images smaller than 10kB in the index.html file. This is done to prevent issues with Content Security Policy",
-      "required": true,
-      "value": "0"
     }
   }
 }

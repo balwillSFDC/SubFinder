@@ -10,4 +10,5 @@ You can easily install the app in your instance in < 5 minutes by following the 
 * ### 🏡 [Home](https://github.com/balwillSFDC/SubFinder/wiki)
 * ### :clock1: [Getting Started](https://github.com/balwillSFDC/SubFinder/wiki/Getting-Started)
 * ### 📐 [Design Points](https://github.com/balwillSFDC/SubFinder/wiki/Design-Points)
+* ### :camera: [Screenshots](https://github.com/balwillSFDC/SubFinder/wiki/Screenshots)
 * ### :mailbox: [Sample Responses for sfmcHelper.js functions](https://github.com/balwillSFDC/SubFinder/wiki/Sample-Responses-for-sfmcHelper.js-functions)

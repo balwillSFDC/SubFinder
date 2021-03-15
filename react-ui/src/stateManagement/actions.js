@@ -25,7 +25,7 @@ export const addFindSubscriberJob = () => {
     // Make a post request to endpoint which adds request to a queue and returns job info
     try {
       let response = await axios.post('api/findSubscriberJob', {
-        inputSubmitted: getState().input
+        inputSubmitted: getState().input,
       })
 
       dispatch({

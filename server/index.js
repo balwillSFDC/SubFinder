@@ -8,12 +8,21 @@ const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
 let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
 let Queue = require('bull');
+const helmet = require("helmet");
 
+const clientId = process.env.REACT_APP_SFMC_CLIENTID;
+const clientSecret = process.env.REACT_APP_SFMC_CLIENTSECRET;
 
 const app = express();
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 let workQueue = new Queue('work', REDIS_URL)
 
@@ -26,32 +35,45 @@ app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 // Adds 'Find Subscriber' job to the work queue and returns back job info
 app.post('/api/findSubscriberJob', async (req, res) => {
-  let job = await workQueue.add({
-    jobType: 'FIND_SUBSCRIBER',
-    inputSubmitted: req.body.inputSubmitted
-  })
-  let dateTime = new Date(job.timestamp)
-  
-  res.json({
-    id: job.id,
-    timeSubmitted: dateTime,
-    inputSubmitted: req.body.inputSubmitted,
-    state: await job.getState()
-  })
+  let inputSubmitted = req.body.inputSubmitted
+
+  if (inputSubmitted) {
+    let job = await workQueue.add({
+      jobType: 'FIND_SUBSCRIBER',
+      inputSubmitted
+    })
+    let dateTime = new Date(job.timestamp)
+    
+    res.json({
+      id: job.id,
+      timeSubmitted: dateTime,
+      inputSubmitted: req.body.inputSubmitted,
+      state: await job.getState()
+    })
+  } else {
+    res.status(400)
+      .send('You have not included an input to submit in your request')
+  }
 });
 
 app.get('/api/findSubscriberJob/:id', async (req, res) => {
   let id = req.params.id 
-  let job = await workQueue.getJob(id)
 
-  if (job === null) {
-    res.status(404).end();
+  if (id) {
+    let job = await workQueue.getJob(id)
+
+    if (job === null) {
+      res.status(404).end();
+    } else {
+      let state = await job.getState();
+      let progress = job._progress;
+      let result = job.returnvalue;
+      let reason = job.failedReason;
+      res.json({ id, state, progress, result, reason });
+    }
   } else {
-    let state = await job.getState();
-    let progress = job._progress;
-    let result = job.returnvalue;
-    let reason = job.failedReason;
-    res.json({ id, state, progress, result, reason });
+    res.status(400)
+      .send('You have either not included an id in your request')
   }
 })
 
