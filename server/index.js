@@ -17,6 +17,7 @@ const app = express();
 app.use(
   helmet({
     contentSecurityPolicy: false,
+    frameguard: false
   })
 )
 app.use(express.json());
