@@ -19,8 +19,7 @@
     "script-src-elem": "'self'",
     "frame-ancestors": [
       "'self'",
-      "https://*.exacttarget.com/",
-      "https://*.exacttarget.com/*"
+      "https:"
     ]
   }
 }
