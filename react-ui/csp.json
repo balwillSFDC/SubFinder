@@ -13,8 +13,9 @@
       "https://*.facebook.com"
     ],
     "connect-src": [
-      "'self'",
-      "https://mybackend.com"
-    ]
+      "'self'"
+    ],
+    "script-src": "'self'",
+    "script-src-elem": "'self'"
   }
 }
