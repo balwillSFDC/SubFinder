@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-csp prod && react-scripts build",
+    "build": "(SET INLINE_RUNTIME_CHUNK=false) && (IMAGE_INLINE_SIZE_LIMIT=0) && react-csp prod && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
