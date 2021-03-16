@@ -35,7 +35,7 @@ class FormResult extends React.Component {
   componentDidMount() {
       setInterval(() => {
         let incompleteJobs = this.props.findSubscriberJobs.filter(job => {
-          return job.state === 'active'
+          return job.state === 'active' || job.state === 'waiting'
         })
 
         if (incompleteJobs.length > 0) {
