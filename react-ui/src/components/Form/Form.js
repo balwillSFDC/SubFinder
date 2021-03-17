@@ -1,6 +1,12 @@
 import './Form.css'
 import React from 'react';
-import { Input, Button } from '@salesforce/design-system-react';
+import { 
+  Input,
+  Button,
+  Icon,
+  IconSettings,
+  PageHeader,
+} from '@salesforce/design-system-react';
 import FormResult from '../FormResult/FormResult';
 import { connect } from 'react-redux'
 import { addFindSubscriberJob, handleInput } from '../../stateManagement/actions'
@@ -32,9 +38,22 @@ class Form extends React.Component {
     let isEmail = this.props.input.includes('@') ? true : false 
 
     return (
-      <React.Fragment>
+      <div id="form">
+        <IconSettings iconPath="/icons/">
+          <PageHeader
+            icon={
+              <Icon
+                category="standard"
+                name="form"
+              />
+            }
+            title="Form"
+            variant="object-home"
+            className="formHeader"
+          />
+        </IconSettings>
         <div
-          id='form'
+          id='form-body'
           className="slds-box slds-theme_default"
         >
           <h1 className="slds-text-title slds-p-vertical_medium">
@@ -59,9 +78,7 @@ class Form extends React.Component {
             disabled={!isEmail}
           />
         </div>
-
-
-      </React.Fragment>
+      </div>
     );
   }
 }

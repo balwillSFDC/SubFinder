@@ -15,7 +15,8 @@ const mapStateToProps = state => {
     error: state.error,
     inputSubmitted: state.inputSubmitted,
     resultLoading: state.resultLoading,
-    resultRetrieved: state.resultRetrieved
+    resultRetrieved: state.resultRetrieved,
+    currentJobId: state.currentJobId
   }
 }
 
@@ -48,7 +49,7 @@ class App extends React.Component {
                 </div>
               </div>
               <div>
-              {this.props.inputSubmitted && (this.props.resultLoading || this.props.resultRetrieved) ? <FormResult /> : null }
+              {this.props.currentJobId ? <FormResult /> : null }
               </div>
               
             </Route>

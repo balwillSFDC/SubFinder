@@ -1,8 +1,20 @@
-#form {
+#form-body {
   margin-bottom: 10px;
-  height: 100%;
+  height: 75%;
+  border-radius: 0 0 .25rem .25rem;
+  border-top: 0px;
 }
 
 .slds-form-element {
   margin-bottom: 10px
+}
+
+.formHeader {
+  padding: 1rem 1rem .75rem 1.5rem;
+  border-radius: .25rem .25rem 0 0 ;
+}
+
+#form {
+  /* The extra 1-2% offsets the negative 'margin-top' for #form-body */
+  height: 100%;
 }
