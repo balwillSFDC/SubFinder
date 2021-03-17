@@ -13,8 +13,6 @@ const mapStateToProps = state => {
   return {
     input: state.input,
     inputSubmitted: state.inputSubmitted,
-    resultLoading: state.resultLoading,
-    resultRetrieved: state.resultRetrieved,
     results: state.results,
     error: state.error,
     findSubscriberJobs: state.findSubscriberJobs,
@@ -50,7 +48,7 @@ class FormResult extends React.Component {
     
     let currentJob = this.props.findSubscriberJobs.find( job => job.id == this.props.currentJobId)
 
-    if (this.props.resultLoading && !this.props.resultRetrieved) {
+    if (currentJob.state === 'active') {
       displayResults = (
         <>
           <div
@@ -76,20 +74,22 @@ class FormResult extends React.Component {
           </div>
         </>
       )
-    } else if ( this.props.resultRetrieved && (currentJob.result.subscriberInfo.length > 0 || currentJob.result.dataExtensionResults.length > 0) ) {
+    } else if ( currentJob.state === 'completed' && (currentJob.result.subscriberInfo.length > 0 || currentJob.result.dataExtensionResults.length > 0) ) {
       displayResults = (
         <>
           <SubscriberInfoResults />
           <DataExtensionTables />  
         </>
       )
-    } else if (this.props.resultRetrieved && currentJob.result.subscriberInfo.length === 0 && currentJob.result.dataExtensionResults.length === 0) {
+    } else if (currentJob.state === 'completed' && currentJob.result.subscriberInfo.length === 0 && currentJob.result.dataExtensionResults.length === 0) {
       displayResults = (
         <div className={'slds-text-heading_medium slds-text-align_center'}>
-          Whoops! Looks like a Subscriber with the email, <strong>{currentJob.inputSubmitted}</strong>, does not exist
+          Whoops! Looks like Subscriber&apos;s email address you searched for, <strong>{currentJob.inputSubmitted}</strong>, does not exist
         </div>
       )
-    } 
+    } else {
+      displayResults = ''
+    }
 
     return (
       <div

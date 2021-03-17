@@ -7,10 +7,15 @@ import About from '../About/About';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { BrandBand } from '@salesforce/design-system-react';
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
+import SearchHistory from '../SearchHistory/SearchHistory';
+import FormResult from '../FormResult/FormResult'
 
 const mapStateToProps = state => {
   return {
-    error: state.error
+    error: state.error,
+    inputSubmitted: state.inputSubmitted,
+    resultLoading: state.resultLoading,
+    resultRetrieved: state.resultRetrieved
   }
 }
 
@@ -34,7 +39,18 @@ class App extends React.Component {
             <AppHeader />
 
             <Route exact path="/">
-              <Form />
+              <div className="slds-grid slds-gutters">
+                <div className="slds-col slds-size_1-of-3">
+                  <SearchHistory />    
+                </div>
+                <div className="slds-col slds-size_2-of-3">
+                  <Form />
+                </div>
+              </div>
+              <div>
+              {this.props.inputSubmitted && (this.props.resultLoading || this.props.resultRetrieved) ? <FormResult /> : null }
+              </div>
+              
             </Route>
 
             <Route path="/about">

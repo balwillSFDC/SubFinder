@@ -39,8 +39,6 @@ const reducer = (state = initialState, action) => {
     case actionType.ADD_FIND_SUBSCRIBER_JOB_REQUEST:
       return {
         ...state,
-        resultLoading: action.payload.resultLoading,
-        resultRetrieved: action.payload.resultRetrieved,
         inputSubmitted: action.payload.inputSubmitted,
         error: action.payload.error
       };
@@ -53,23 +51,17 @@ const reducer = (state = initialState, action) => {
     case actionType.ADD_FIND_SUBSCRIBER_JOB_FAILURE:
       return {
         ...state,
-        resultLoading: action.payload.resultLoading,
-        resultRetrieved: action.payload.resultRetrieved,
         error: action.payload.error
       };
     case actionType.UPDATE_FIND_SUBSCRIBER_CURRENT_JOB_SUCCESS:
       return {
         ...state,
         findSubscriberJobs: updateObjectInArray(state.findSubscriberJobs, action),
-        resultLoading: action.payload.resultLoading,
-        resultRetrieved: action.payload.resultRetrieved
       }
     case actionType.UPDATE_FIND_SUBSCRIBER_CURRENT_JOB_FAILURE:
       return {
         ...state,
         findSubscriberJobs: updateObjectInArray(state.findSubscriberJobs, action),
-        resultLoading: action.payload.resultLoading,
-        resultRetrieved: action.payload.resultRetrieved
       }
     case actionType.UPDATE_FIND_SUBSCRIBER_OTHER_JOB_SUCCESS:
       return {
@@ -86,6 +78,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: {}
+      }
+    case actionType.UPDATE_CURRENT_JOB_ID_VALUE:
+      return {
+        ...state,
+        currentJobId: action.payload.currentJobId
       }
     default:
       return state;

@@ -60,7 +60,6 @@ class Form extends React.Component {
           />
         </div>
 
-        {this.props.inputSubmitted && (this.props.resultLoading || this.props.resultRetrieved) ? <FormResult /> : null }
 
       </React.Fragment>
     );

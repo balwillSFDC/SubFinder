@@ -82,7 +82,7 @@ class DataExtensionTables extends Component {
               <Card 
                 key={`card-${result.dataExtension.ObjectID}`}
                 heading={result.dataExtension.Name}
-                icon={<Icon category="utility" name="database" size="small" />}
+                icon={<Icon category="standard" name="entity" size="small" />}
               >
                 <div id={'folder-path'} className={'slds-text-color_weak'} >
                   {result.folderPath}

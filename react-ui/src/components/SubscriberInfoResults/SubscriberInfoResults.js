@@ -85,7 +85,7 @@ class SubscriberInfoResults extends Component {
           <Card 
             key={`subCard`}
             heading='All Subscribers Info'
-            icon={<Icon category="utility" name="people" size="small"/>}
+            icon={<Icon category="standard" name="people" size="small"/>}
           >
 
             <DataTable items={subscriberInfoResults}>
