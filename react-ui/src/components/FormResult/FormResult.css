@@ -2,11 +2,14 @@
   padding-bottom: 10px; 
 }
 
-#form-result {
-  margin-bottom: 10px;
+#formResult {
   margin-top: 10px;
 }
 
 #error-reason {
   margin-top: 10px;
+}
+
+#formResult-body {
+  border-radius: 0 0 .25rem .25rem;
 }

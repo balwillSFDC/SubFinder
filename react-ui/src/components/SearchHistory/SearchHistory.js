@@ -45,11 +45,14 @@ class SearchHistory extends Component {
       // converting dateTime so it's in user's timezone
       let dateTime = new Date(job.timeSubmitted).toLocaleString()
 
+      // Short function that capitalizes the first letter for a string given
+      const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+
       return {
         id: job.id,
         label: job.inputSubmitted,
-        bottomLeftText: `DataExtension Results: ${deResults}`,
-        topRightText: job.state,
+        bottomLeftText: `Data Extension Results: ${deResults}`,
+        topRightText: capitalize(job.state),
         bottomRightText: dateTime
       }
     })

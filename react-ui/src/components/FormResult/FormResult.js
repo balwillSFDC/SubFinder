@@ -6,6 +6,11 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SubscriberInfoResults from '../SubscriberInfoResults/SubscriberInfoResults'
 import { updateFindSubscriberJobs } from '../../stateManagement/actions'
+import {
+  Icon,
+  IconSettings,
+  PageHeader,
+} from '@salesforce/design-system-react'
 
 
 // Maps the Store's State (aka the global state) to this Component's props
@@ -45,10 +50,12 @@ class FormResult extends React.Component {
   render() {
     
     let displayResults;
+    let iconDisplay
     
     let currentJob = this.props.findSubscriberJobs.find( job => job.id == this.props.currentJobId)
 
     if (currentJob.state === 'active') {
+      iconDisplay='generic_loading'
       displayResults = (
         <>
           <div
@@ -61,6 +68,7 @@ class FormResult extends React.Component {
         </>
       )
     } else if ( currentJob.state === 'failed' && currentJob.reason ) {
+      iconDisplay='first_non_empty'
       displayResults = (
         <>
           <div className='slds-text-color_error slds-text-heading_medium slds-text-align_center'> 
@@ -75,6 +83,7 @@ class FormResult extends React.Component {
         </>
       )
     } else if ( currentJob.state === 'completed' && (currentJob.result.subscriberInfo.length > 0 || currentJob.result.dataExtensionResults.length > 0) ) {
+      iconDisplay = "task2"
       displayResults = (
         <>
           <SubscriberInfoResults />
@@ -82,21 +91,38 @@ class FormResult extends React.Component {
         </>
       )
     } else if (currentJob.state === 'completed' && currentJob.result.subscriberInfo.length === 0 && currentJob.result.dataExtensionResults.length === 0) {
+      iconDisplay='first_non_empty'
       displayResults = (
         <div className={'slds-text-heading_medium slds-text-align_center'}>
           Whoops! Looks like Subscriber&apos;s email address you searched for, <strong>{currentJob.inputSubmitted}</strong>, does not exist
         </div>
       )
     } else {
+      iconDisplay='first_non_empty'
       displayResults = ''
     }
 
     return (
-      <div
-        id='form-result'
-        className="slds-box slds-theme_default"
-      >
-        {displayResults}
+      <div id="formResult">
+        <IconSettings iconPath="/icons/">
+          <PageHeader
+            icon={
+              <Icon
+                category="standard"
+                name={iconDisplay}
+              />
+            }
+            title="Results"
+            variant="object-home"
+            className="formHeader"
+          />
+        </IconSettings>
+        <div
+          className="slds-box slds-theme_default"
+          id="formResult-body"
+        >
+          {displayResults}
+        </div>
       </div>
     );
   } 
