@@ -32,34 +32,36 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <BrandBand id="brand-band-lightning-blue" theme="lightning-blue">
-          <div className={'App'}>
-            {/* If the error prop is populated, then display the ErrorAlert component  */}
-            { this.props.error && Object.keys(this.props.error).length === 0  ? null : <ErrorAlert /> } 
-            <AppHeader />
+      <div data-testid="app">
+        <BrowserRouter >
+          <BrandBand id="brand-band-lightning-blue" theme="lightning-blue">
+            <div className={'App'}>
+              {/* If the error prop is populated, then display the ErrorAlert component  */}
+              { this.props.error && Object.keys(this.props.error).length === 0  ? null : <ErrorAlert /> } 
+              <AppHeader data-testid="appHeader" />
 
-            <Route exact path="/">
-              <div className="slds-grid slds-gutters">
-                <div className="slds-col slds-size_1-of-3">
-                  <SearchHistory />    
+              <Route exact path="/">
+                <div className="slds-grid slds-gutters">
+                  <div className="slds-col slds-size_1-of-3">
+                    <SearchHistory />    
+                  </div>
+                  <div className="slds-col slds-size_2-of-3">
+                    <Form />
+                  </div>
                 </div>
-                <div className="slds-col slds-size_2-of-3">
-                  <Form />
+                <div>
+                {this.props.currentJobId ? <FormResult /> : null }
                 </div>
-              </div>
-              <div>
-              {this.props.currentJobId ? <FormResult /> : null }
-              </div>
-              
-            </Route>
+                
+              </Route>
 
-            <Route path="/about">
-              <About />
-            </Route>
-          </div>
-        </BrandBand>
-      </BrowserRouter>
+              <Route path="/about">
+                <About />
+              </Route>
+            </div>
+          </BrandBand>
+        </BrowserRouter>
+      </div>
     );
   }
 }

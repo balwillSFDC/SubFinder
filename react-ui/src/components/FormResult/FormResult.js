@@ -103,7 +103,7 @@ class FormResult extends React.Component {
     }
 
     return (
-      <div id="formResult">
+      <div id="formResult" data-testid="formResult">
         <IconSettings iconPath="/icons/">
           <PageHeader
             icon={

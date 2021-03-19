@@ -1,8 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { render, screen, cleanup } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import About from './About'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<About />, div)
+test('renders without crashing', () => {
+  render(<About />)
+  const aboutElement = screen.getByTestId('about-page')
+  expect(aboutElement).toBeInTheDocument()
 })

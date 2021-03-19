@@ -12,7 +12,7 @@ export default class About extends Component {
 
   render() {
     return (
-      <div>
+      <div data-testid="about-page">
         <div className="slds-box slds-theme_default">
           <div className="slds-grid slds-gutters">
             <div className="slds-col">

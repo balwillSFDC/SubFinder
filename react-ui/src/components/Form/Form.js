@@ -38,7 +38,7 @@ class Form extends React.Component {
     let isEmail = this.props.input.includes('@') ? true : false 
 
     return (
-      <div id="form">
+      <div id="form" data-testid="form">
         <IconSettings iconPath="/icons/">
           <PageHeader
             icon={

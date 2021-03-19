@@ -98,7 +98,7 @@ class SearchHistory extends Component {
   render() {
     return (
       <IconSettings iconPath="/icons/">
-        <div id='splitview'>
+        <div id='splitview' data-testid='searchHistory'>
           <Splitview
             events={{
               onClose: () => { this.setState({ isOpen: false })},

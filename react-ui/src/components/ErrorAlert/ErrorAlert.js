@@ -52,6 +52,7 @@ class ErrorAlert extends Component {
             onRequestClose={() => {
               this.setState({ isOpen: false });
             }}
+            title
 					/>
 				</ToastContainer>
         ) : null}
