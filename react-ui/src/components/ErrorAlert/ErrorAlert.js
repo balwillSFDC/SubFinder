@@ -40,6 +40,7 @@ class ErrorAlert extends Component {
 
   render() {
     return (
+      <div data-testid="errorAlert">
       <IconSettings iconPath='/icons/'>
 				{this.state.isOpen ? (
           <ToastContainer>
@@ -57,6 +58,7 @@ class ErrorAlert extends Component {
 				</ToastContainer>
         ) : null}
       </IconSettings>
+      </div>
     )
   }
 }

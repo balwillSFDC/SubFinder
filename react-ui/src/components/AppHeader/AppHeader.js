@@ -17,26 +17,25 @@ class AppHeader extends React.Component {
   
   render() {
     return (
-
-      <IconSettings iconPath="/icons/">
-        <PageHeader
-          icon={
-            <Icon
-              category="standard"
-              name="forecasts"
-              size="large"
-            />
-          }
-          title="SubFinder"
-          variant="object-home"
-          className="pageHeader"
-          info="Welcome to SubFinder - The tool to help you find your Subscribers' data!"
-        />
-        <div id="links" className="slds-box slds-theme_default" >
-          <Link to="/">Home</Link> | <Link to="/about">About</Link>
-        </div>
-      </IconSettings>
-
+      <div data-testid="appHeader">
+        <IconSettings iconPath="/icons/">
+          <PageHeader
+            icon={
+              <Icon
+                category="standard"
+                name="forecasts"
+                size="large"
+              />
+            }
+            title="SubFinder"
+            variant="object-home"
+            info="Welcome to SubFinder - The tool to help you find your Subscribers' data!"
+          />
+          <div id="links" className="slds-box slds-theme_default" >
+            <Link to="/">Home</Link> | <Link to="/about">About</Link>
+          </div>
+        </IconSettings>
+      </div>
 
     )
   }

@@ -94,7 +94,6 @@ class SubscriberInfoResults extends Component {
             
           </Card>
         </IconSettings>
-        
       )
     } else {
       displayResult = null
@@ -102,7 +101,7 @@ class SubscriberInfoResults extends Component {
 
   
     return (
-      <div>
+      <div data-testid='subscriberInfoResults'>
         <div id='display-message' >
           {displayMessage}
         </div>

@@ -8,10 +8,10 @@
   margin-bottom: 10px
 }
 
-#brand-band-lightning-blue > div > div.slds-page-header.pageHeader > div:nth-child(1) > div > div > div.slds-media__body > div > div > h1 > span {
+#brand-band-lightning-blue > div > div > div.slds-page-header > div:nth-child(1) > div > div > div.slds-media__body > div > div > h1 > span {
   font-size: 1.75rem;
 }
 
-#brand-band-lightning-blue > div > div.slds-page-header.pageHeader > div:nth-child(1) > div > div {
+#brand-band-lightning-blue > div > div > div.slds-page-header > div:nth-child(1) > div > div {
   margin-bottom: .5rem;
 }

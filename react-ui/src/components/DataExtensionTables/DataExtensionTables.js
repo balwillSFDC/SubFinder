@@ -60,7 +60,7 @@ class DataExtensionTables extends Component {
     }
 
     return (
-      <div id={'data-extension-results-section'}>
+      <div id={'data-extension-results-section'} data-testid='data-extension-results-section'>
        
         {dataExtensionResultMessage}
 
@@ -82,7 +82,8 @@ class DataExtensionTables extends Component {
               <Card 
                 key={`card-${result.dataExtension.ObjectID}`}
                 heading={result.dataExtension.Name}
-                icon={<Icon category="standard" name="entity" size="small" />}
+                icon={<Icon category="standard" name="entity" size="small" assistiveText={{label: "deIcon"}} />}
+                id={`dataExtensionCard-${result.dataExtension.ObjectID}`}
               >
                 <div id={'folder-path'} className={'slds-text-color_weak'} >
                   {result.folderPath}

@@ -54,7 +54,11 @@ class FormResult extends React.Component {
     
     let currentJob = this.props.findSubscriberJobs.find( job => job.id == this.props.currentJobId)
 
-    if (currentJob.state === 'active') {
+    
+    if (!currentJob) {
+      iconDisplay='first_non_empty'
+      displayResults = ''
+    } else if (currentJob.state === 'active') {
       iconDisplay='generic_loading'
       displayResults = (
         <>
@@ -93,14 +97,11 @@ class FormResult extends React.Component {
     } else if (currentJob.state === 'completed' && currentJob.result.subscriberInfo.length === 0 && currentJob.result.dataExtensionResults.length === 0) {
       iconDisplay='first_non_empty'
       displayResults = (
-        <div className={'slds-text-heading_medium slds-text-align_center'}>
-          Whoops! Looks like Subscriber&apos;s email address you searched for, <strong>{currentJob.inputSubmitted}</strong>, does not exist
+        <div className={'slds-text-heading_medium slds-text-align_center'} >
+          Oops! Looks like Subscriber&apos;s email address you searched for, <strong>{currentJob.inputSubmitted}</strong>, does not exist
         </div>
       )
-    } else {
-      iconDisplay='first_non_empty'
-      displayResults = ''
-    }
+    } 
 
     return (
       <div id="formResult" data-testid="formResult">
