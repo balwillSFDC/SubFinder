@@ -2,9 +2,11 @@
 
 # dependencies
 /react-ui/node_modules
+/react-ui/coverage
 /node_modules
 /.pnp
 .pnp.js
+
 
 # testing
 /coverage
