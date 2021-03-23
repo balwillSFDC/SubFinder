@@ -15,7 +15,7 @@ class Loader extends Component {
         return (
           <>
             <p id='spinner-message' data-testid='spinner-message'>Hold tight! We are finding <strong>{this.props.inputSubmitted}</strong> for you</p>
-            <div id='spinner' >
+            <div id='spinner' data-testid='spinner'>
               <Spinner
                 size="medium"
                 variant="brand"

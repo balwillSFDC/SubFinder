@@ -91,6 +91,7 @@ class SearchHistory extends Component {
         events={{
           onSelect: (event, { item }) => this.props.dispatch(updateCurrentJobIdValue(item.id))
         }}
+        assistiveText={{list: 'Select an item to view the details'}}
       />
     ]
   }
