@@ -386,7 +386,6 @@ let state = {
   }
 }
 
-
 test('Renders DE Results Message', () => {
   render(<DataExtensionTables />, { initialState: state })
 

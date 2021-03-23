@@ -9,13 +9,12 @@ import { BrandBand } from '@salesforce/design-system-react';
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
 import SearchHistory from '../SearchHistory/SearchHistory';
 import FormResult from '../FormResult/FormResult'
+import { subFinderPropTypes } from '../../stateManagement/propTypes'
 
 const mapStateToProps = state => {
   return {
     error: state.error,
     inputSubmitted: state.inputSubmitted,
-    resultLoading: state.resultLoading,
-    resultRetrieved: state.resultRetrieved,
     currentJobId: state.currentJobId
   }
 }
@@ -65,5 +64,7 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {...subFinderPropTypes}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

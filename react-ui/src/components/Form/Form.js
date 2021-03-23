@@ -7,9 +7,9 @@ import {
   IconSettings,
   PageHeader,
 } from '@salesforce/design-system-react';
-import FormResult from '../FormResult/FormResult';
 import { connect } from 'react-redux'
 import { addFindSubscriberJob, handleInput } from '../../stateManagement/actions'
+import { subFinderPropTypes } from '../../stateManagement/propTypes';
 
 
 // Maps the Store's State (aka the global state) to this Component's props
@@ -17,8 +17,6 @@ const mapStateToProps = state => {
   return {
     input: state.input,
     inputSubmitted: state.inputSubmitted,
-    resultLoading: state.resultLoading,
-    resultRetrieved: state.resultRetrieved,
   }
 }
 
@@ -82,5 +80,7 @@ class Form extends React.Component {
     );
   }
 }
+
+Form.propTypes = {...subFinderPropTypes}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

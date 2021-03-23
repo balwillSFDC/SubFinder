@@ -3,7 +3,6 @@ import React from 'react';
 import DataExtensionTables from '../DataExtensionTables/DataExtensionTables';
 import Loader from '../Loader/Loader'
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SubscriberInfoResults from '../SubscriberInfoResults/SubscriberInfoResults'
 import { updateFindSubscriberJobs } from '../../stateManagement/actions'
 import {
@@ -11,6 +10,7 @@ import {
   IconSettings,
   PageHeader,
 } from '@salesforce/design-system-react'
+import { subFinderPropTypes } from '../../stateManagement/propTypes';
 
 
 // Maps the Store's State (aka the global state) to this Component's props
@@ -127,7 +127,8 @@ class FormResult extends React.Component {
       </div>
     );
   } 
-    
 }
+
+FormResult.propTypes = {...subFinderPropTypes}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormResult);

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { 
   Toast,
   ToastContainer,
-  Icon,
   IconSettings } from '@salesforce/design-system-react'
+import { subFinderPropTypes } from '../../stateManagement/propTypes'
 
 const mapStateToProps = (state) => {
   return {
@@ -28,7 +28,7 @@ class ErrorAlert extends Component {
   componentDidMount() {
     // Closes the error message if not automatically closed itself
     setTimeout(() => {
-      this.setState(state => ({
+      this.setState(() => ({
         isOpen: false
       }))
 
@@ -62,5 +62,7 @@ class ErrorAlert extends Component {
     )
   }
 }
+
+ErrorAlert.propTypes = { ...subFinderPropTypes}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorAlert)

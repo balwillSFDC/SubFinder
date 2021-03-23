@@ -7,6 +7,7 @@ import {
   DataTable,
   DataTableColumn,
   IconSettings } from '@salesforce/design-system-react'
+import { subFinderPropTypes } from '../../stateManagement/propTypes'
 
 const mapStateToProps = state => {
   return {
@@ -99,7 +100,6 @@ class SubscriberInfoResults extends Component {
       displayResult = null
     }
 
-  
     return (
       <div data-testid='subscriberInfoResults'>
         <div id='display-message' >
@@ -110,5 +110,7 @@ class SubscriberInfoResults extends Component {
     )
   }
 }
+
+SubscriberInfoResults.propTypes = {...subFinderPropTypes}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubscriberInfoResults)

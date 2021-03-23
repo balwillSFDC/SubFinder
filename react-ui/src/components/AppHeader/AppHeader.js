@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   PageHeader,
-  PageHeaderControl,
   IconSettings,
   Icon,
 } from '@salesforce/design-system-react'

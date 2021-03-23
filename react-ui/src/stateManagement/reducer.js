@@ -9,8 +9,6 @@ const customMiddleWare = (store) => (next) => (action) => {
 };
 
 
-
-
 const reducer = (state = initialState, action) => {
   
   // function used in UPDATE_FIND_SUBSCRIBER_JOB_SUCCESS action

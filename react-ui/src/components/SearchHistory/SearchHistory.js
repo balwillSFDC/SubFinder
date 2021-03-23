@@ -12,6 +12,7 @@ import {
   Splitview,
   Button
 } from '@salesforce/design-system-react'
+import { subFinderPropTypes } from '../../stateManagement/propTypes'
 
 const mapStateToProps = (state) => ({
   findSubscriberJobs: state.findSubscriberJobs
@@ -107,7 +108,6 @@ class SearchHistory extends Component {
             }}
             isOpen={this.state.isOpen}
             master={this.masterView()}
-            detail={() => {}}
             masterWidth="100%"
           />
         </div>
@@ -115,5 +115,7 @@ class SearchHistory extends Component {
     )
   }
 }
+
+SearchHistory.propTypes = {...subFinderPropTypes}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchHistory)

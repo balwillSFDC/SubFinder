@@ -2,11 +2,11 @@ import './Loader.css'
 import React, { Component } from 'react'
 import { Spinner } from '@salesforce/design-system-react'
 import { connect } from 'react-redux'
+import { subFinderPropTypes } from '../../stateManagement/propTypes'
 
 const mapStateToProps = state => {
     return {
       inputSubmitted: state.inputSubmitted,  
-      loadingResult: state.loadingResult
     }
 }
 
@@ -26,5 +26,7 @@ class Loader extends Component {
         )
     }
 }
+
+Loader.propTypes = {...subFinderPropTypes}
 
 export default connect(mapStateToProps)(Loader)

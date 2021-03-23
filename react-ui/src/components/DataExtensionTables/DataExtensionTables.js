@@ -8,6 +8,7 @@ import {
   IconSettings,
 } from '@salesforce/design-system-react';
 import { connect } from 'react-redux'
+import { subFinderPropTypes } from '../../stateManagement/propTypes';
 
 const mapStateToProps = state => {
   return {
@@ -103,5 +104,7 @@ class DataExtensionTables extends Component {
     );
   }
 }
+
+DataExtensionTables.propTypes = { ...subFinderPropTypes }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataExtensionTables);
