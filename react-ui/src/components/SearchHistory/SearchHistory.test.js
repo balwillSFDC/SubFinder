@@ -424,7 +424,7 @@ test('Renders search details correctly when processing job', () => {
   const itemCount = screen.getByText('1 item')
   const searchHistoryList = screen.getByRole('listbox', {name: 'Select an item to view the details'})
   const listItems = screen.getAllByRole('presentation')
-  const listItemDetails = screen.getByRole('option', {name: 'balwill@bu.edu Active Data Extension Results: pending Data Extension Results: pending'})
+  const listItemDetails = screen.getByRole('option', {name: 'balwill@bu.edu Active Data Extension Results: Pending Data Extension Results: Pending'})
 
   expect(itemCount).toBeInTheDocument()
   expect(searchHistoryList).not.toBeEmptyDOMElement()

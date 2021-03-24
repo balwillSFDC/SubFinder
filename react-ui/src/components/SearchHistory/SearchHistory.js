@@ -41,7 +41,7 @@ class SearchHistory extends Component {
     
     return sortedJobs.map(job => {
 
-      let deResults = job.state != 'completed' ? 'pending' : job.result.dataExtensionResults.length 
+      let deResults = job.state != 'completed' ? 'Pending' : job.result.dataExtensionResults.length 
 
       // converting dateTime so it's in user's timezone
       let dateTime = new Date(job.timeSubmitted).toLocaleString()
